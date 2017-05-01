@@ -1,0 +1,13 @@
+1. Create database:
+Table: User
+Table: Journal
+
+2.Install the following Node Modules:
+express
+ejs layouts
+express-session
+body-parser
+pg pg-hstore
+sequelize
+
+app.set("view engine, ejs"); //tells express to look for ejs files and use
