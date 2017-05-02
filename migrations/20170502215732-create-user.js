@@ -8,17 +8,17 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      familyId: {
-        type: Sequelize.INTEGER
-      },
-      isAdmin: {
-        type: Sequelize.BOOLEAN
-      },
       username: {
         type: Sequelize.STRING
       },
       password: {
         type: Sequelize.STRING
+      },
+      isAdmin: {
+        type: Sequelize.BOOLEAN
+      },
+      groupId: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

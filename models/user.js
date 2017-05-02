@@ -1,14 +1,15 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
     var user = sequelize.define('user', {
-        familyId: DataTypes.INTEGER,
-        isAdmin: DataTypes.BOOLEAN,
         username: DataTypes.STRING,
-        password: DataTypes.STRING
+        password: DataTypes.STRING,
+        isAdmin: DataTypes.BOOLEAN,
+        groupId: DataTypes.INTEGER
     }, {
         classMethods: {
             associate: function(models) {
-                models.user.hasMany(models.journal);
+                models.user.hasMany(models.journal)
+                models.user.belongsTo(models.group)
             }
         }
     });
