@@ -11,6 +11,8 @@ var reload = require('reload');
 var db = require('./models');
 var isLoggedIn = require('./middleware/isLoggedIn');
 var cloudinary = require('cloudinary');
+var multer = require('multer');
+var upload = multer({ dest: './uploads' });
 var app = express();
 
 //Set and Use Statements
