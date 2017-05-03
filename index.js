@@ -5,7 +5,6 @@ var passport = require('./config/passportConfig');
 var session = require('express-session');
 var request = require("request"); //what is this?
 var flash = require('connect-flash');
-//TODO var isLoggedIn
 require("dotenv").config();
 var logger = require('morgan');
 var reload = require('reload');
@@ -19,9 +18,11 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
 app.use(require('morgan')('dev')); //who is morgan?
-// app.use(session({
-// 	//for FB API
-// }))
+app.use(session({
+    secret: 'mynotsosecretkey',
+    resave: false,
+    saveUnintialized: true
+}));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -55,8 +56,16 @@ app.get('/familyjournals', isLoggedIn, function(req, res) {
     res.render('familyjournals')
 })
 
+//POST Route for login page
 
-//Routes Post for the New User Page
+app.post('/login', passport.authenticate('local', {
+    successRedirect: '/userjournal',
+    successFlash: 'You are now logged in',
+    failureFlash: 'Try again, please',
+    failureRedirect: '/login'
+}));
+
+//Post Route for the New User Page
 app.post('/newuser', function(req, res) {
     console.log('user', req.body);
     db.user.create({
@@ -100,7 +109,7 @@ app.post('/newgroup', function(req, res) {
 
 //Controllers
 //Insert MiddleWare here for IsLoggedIn
-
-app.use('/journal', require('./controllers/journal')) //anything that hits this route refer to the controllers route
-    //Listen - tells which port to listen on
+app.use('/journal', isLoggedIn, require('./controllers/journal')); //anything that hits this route refer to the controllers route
+app.use('/familyjournals', isLoggedIn, require('./controllers/journal'));
+//Listen - tells which port to listen on
 app.listen(3000);

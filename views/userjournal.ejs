@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title><% %>'s Field Journal</title>
-</head>
-<body>
-<h1><% %>'s Field Journal</h1>
-	<h3>File Upload</h3>
-		<form action="/" method="POST" enctype="multipart/form-data">
-			<label class="btn btn-lg btn-default btn-file">Browse
-			<input type="file" name="myFile" class="hidden">
-			</label>
-			<input type="submit" class="btn btn-lg btn-success">
-		</form>
-		<form action="" type="POST" enctype="multipart/form-data">
-		<input type="text-area" name="description">
-		</form>
-</body>
-</html>
+<h1><%= currentUser.username %>'s Field Journal</h1>
+<h3>File Upload</h3>
+	<form action="/" method="POST" enctype="multipart/form-data">
+		<label class="btn btn-lg btn-default btn-file">Browse
+		<input type="file" name="myFile" class="hidden">
+		</label>
+		<fieldset>
+			<legend>Description:</legend>
+			<input type="text-area" name="description">
+		</fieldset>
+
+		<input type="submit" class="btn btn-lg btn-success">
+
+
+	</form>
 

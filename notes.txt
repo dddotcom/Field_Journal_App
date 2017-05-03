@@ -14,3 +14,7 @@ app.set("view engine, ejs"); //tells express to look for ejs files and use
 
 3. Great notes on passport:
 https://github.com/jaredhanson/passport
+//passport is a library that makes authorization easier
+
+//session is keeping track from page to page load by holding it in a cookie
+//flash needs it because it is using the session for the next page
