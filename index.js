@@ -10,7 +10,7 @@ require("dotenv").config();
 var logger = require('morgan');
 var reload = require('reload');
 var db = require('./models');
-// var isLoggedIn = require('./middleware/isLoggedIn');
+var isLoggedIn = require('./middleware/isLoggedIn');
 
 var app = express();
 
@@ -41,9 +41,17 @@ app.get('/newgroup', function(req, res) {
     res.render('newgroup');
 })
 app.get('/newuser', function(req, res) {
-        res.render('newuser');
-    })
-    //Routes Post for the New User Page
+    res.render('newuser');
+})
+app.get('/userjournal', isLoggedIn, function(req, res) {
+    res.render('userjournal')
+})
+app.get('/familyjournals', isLoggedIn, function(req, res) {
+    res.render('familyjournals')
+})
+
+
+//Routes Post for the New User Page
 app.post('/newuser', function(req, res) {
     console.log('user', req.body);
     db.user.create({
@@ -51,7 +59,7 @@ app.post('/newuser', function(req, res) {
         'isAdmin': true,
         'password': req.body.password
     }).then(function(user) {
-        res.redirect('/opening');
+        res.redirect('/userjournal');
     })
 });
 
