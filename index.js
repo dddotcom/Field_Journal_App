@@ -25,6 +25,11 @@ app.use(require('morgan')('dev')); //who is morgan?
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(function(req, res, next) {
+    res.locals.alerts = req.flash();
+    res.locals.currentUser = req.user;
+    next();
+})
 
 
 //Define Routes (GETS)
