@@ -10,7 +10,7 @@ var logger = require('morgan');
 var reload = require('reload');
 var db = require('./models');
 var isLoggedIn = require('./middleware/isLoggedIn');
-
+var cloudinary = require('cloudinary');
 var app = express();
 
 //Set and Use Statements
@@ -50,11 +50,11 @@ app.get('/newuser', function(req, res) {
     res.render('newuser');
 })
 app.get('/userjournal', isLoggedIn, function(req, res) {
-    res.render('userjournal')
-})
-app.get('/familyjournals', isLoggedIn, function(req, res) {
-    res.render('familyjournals')
-})
+        res.render('userjournal')
+    })
+    // app.get('/groupjournals', isLoggedIn, function(req, res) {
+    //     res.render('groupjournals')
+    // })
 
 //POST Route for login page
 
@@ -73,7 +73,7 @@ app.post('/newuser', function(req, res) {
         'isAdmin': true,
         'password': req.body.password
     }).then(function(user) {
-        res.redirect('/userjournal');
+        res.redirect('/groupjournals');
     })
 });
 
@@ -87,7 +87,7 @@ app.post('/newgroup', function(req, res) {
             'state': req.body.state
         }
     }).spread(function(group, wasCreated) {
-        //this finds or creates the family(.spread is for findorcreate- similar to then)
+        //this finds or creates the group(.spread is for findorcreate- similar to then)
         if (wasCreated) {
             db.user.create({
                     'username': req.body.username,
@@ -99,17 +99,21 @@ app.post('/newgroup', function(req, res) {
                     //TO DO put passport login here
                     res.redirect('/login')
                 })
-                //if the family was new
+                //if the group was new
         } else {
             res.redirect('/login')
-                //family was found
+                //group was found
         }
     })
 });
-
-//Controllers
-//Insert MiddleWare here for IsLoggedIn
-app.use('/journal', isLoggedIn, require('./controllers/journal')); //anything that hits this route refer to the controllers route
-app.use('/familyjournals', isLoggedIn, require('./controllers/journal'));
+app.post('/', upload.single('myFile'), function(req, res) {
+        cloudinary.uploader.upload(req.file.path, function(result) {
+            res.send(result);
+        })
+    })
+    //Controllers
+    //Insert MiddleWare here for IsLoggedIn
+app.use('/journal', isLoggedIn, require('./middleware/isLoggedIn')); //anything that hits this route refer to the controllers route
+app.use('/groupjournals', isLoggedIn, require('./middleware/isLoggedIn'));
 //Listen - tells which port to listen on
 app.listen(3000);
