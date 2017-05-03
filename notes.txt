@@ -11,3 +11,6 @@ pg pg-hstore
 sequelize
 
 app.set("view engine, ejs"); //tells express to look for ejs files and use
+
+3. Great notes on passport:
+https://github.com/jaredhanson/passport
