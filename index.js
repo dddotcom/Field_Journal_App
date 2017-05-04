@@ -53,6 +53,7 @@ app.get('/newuser', function(req, res) {
 })
 app.get('/userjournal', isLoggedIn, function(req, res) {
         res.render('userjournal')
+        console.log(req.user.dataValues.username)
     })
     // app.get('/groupjournals', isLoggedIn, function(req, res) {
     //     res.render('groupjournals')
@@ -98,7 +99,6 @@ app.post('/newgroup', function(req, res) {
                     'groupId': group.id
 
                 }).then(function(user) {
-                    //TO DO put passport login here
                     res.redirect('/login')
                 })
                 //if the group was new
@@ -108,13 +108,41 @@ app.post('/newgroup', function(req, res) {
         }
     })
 });
-app.post('/', upload.single('myFile'), function(req, res) {
+app.post('/userjournal', upload.single('myFile'), function(req, res) {
         cloudinary.uploader.upload(req.file.path, function(result) {
             res.send(result);
+            //instead of sending result we want JSON object to send url to post to plant db along with username, title of plant and description
         })
     })
-    //Controllers
-    //Insert MiddleWare here for IsLoggedIn
+    //set up ajax to pull the image you have uploaded to present on the page
+    // // $.ajax({
+    // //     type: "GET",
+    // //     url: "https://cloudinary.com/?",
+    // //     data: {
+    // //         url: res.body.url
+    // //     },
+    // //     success: function(response) {
+    // //         $('').html
+    // //     },
+    // //     error: function() {
+    // //         alert("There was an error retrieving your image")
+    // //     }
+    // });
+    // //this posts the journal entries (plant name, description & image url to the journal db)
+
+app.post('/userjournal', function(req, res) {
+    db.journal.create({
+        where: { username: username },
+        // 'username' :
+        'plantName': req.body.plantName,
+        'description': req.body.description
+            // 'imageURL': //the url for the image that the user uploaded to cloudinary
+    }).then(function(journal) {
+        res.redirect('/userjournal');
+    })
+});
+//Controllers
+//Insert MiddleWare here for IsLoggedIn
 app.use('/journal', isLoggedIn, require('./middleware/isLoggedIn')); //anything that hits this route refer to the controllers route
 app.use('/groupjournals', isLoggedIn, require('./middleware/isLoggedIn'));
 //Listen - tells which port to listen on
