@@ -146,4 +146,4 @@ app.post('/userjournal', function(req, res) {
 app.use('/journal', isLoggedIn, require('./middleware/isLoggedIn')); //anything that hits this route refer to the controllers route
 app.use('/groupjournals', isLoggedIn, require('./middleware/isLoggedIn'));
 //Listen - tells which port to listen on
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
