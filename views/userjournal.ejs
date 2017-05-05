@@ -5,22 +5,33 @@
 <div>
 	<form action="/userjournal" method="POST" enctype="multipart/form-data">
 		<legend>Journal Entry Title</legend>
+
 		<fieldset>
 			<label for="plantName">Plant Name</label>
 			<input type="text-area" class="form-control" name="plantName" id="plantName" placeholder="plant name">
 			<label for="plantName">Your Plant Story</label>
 			<input type="text-area" class="form-control" name="description" id="description" placeholder="plant story">
 		</fieldset>
-
 		<h3>File Upload</h3>
-		<div>
-		<% journals.forEach(function(journal) { %>
-		<img src="<%=journal.imageURL %>" class="img-thumbnail" alt="uploaded image">
-		<% }) %>
-		</div>
 		<label class="btn btn-lg btn-default btn-file">Browse
 		<input type="file" name="myFile" class="hidden">
 		</label>
 		<input type="submit" class="btn btn-lg btn-success">
+		<div>
+		<% journals.forEach(function(journal) { %>
+		<img src="<%=journal.imageURL %>" class="img-thumbnail" alt="uploaded image">
+		 <%=journal.plantName %>
+		<%=journal.description %>
+		<% }) %>
+		<div>
+			<fieldset>
+			<label for="editentry">Edit Journal Entry</label>
+			<button>Edit</button>
+			<label>Delete Journal Entry</label>
+			<button>Delete</button>
+		</fieldset>
+		</div>
+		</div>
+
 	</form>
 </div>

@@ -130,30 +130,62 @@ app.post('/userjournal', upload.single('myFile'), function(req, res) {
 
 })
 app.get('/userjournal', isLoggedIn, function(req, res) {
-        // find all jrnls in db
-        db.journal.findAll().then(function(journals) {
-            res.render('userjournal', { journals: journals })
+    // find all jrnls in db
+    db.journal.findAll().then(function(journals) {
+        res.render('userjournal', { journals: journals })
 
-        }).catch(function(error) {
-            res.send({ message: 'error', error: error })
-        })
+    }).catch(function(error) {
+        res.send({ message: 'error', error: error })
     })
-    // retrieve the image from cloudinary to reappear on the userjournal page
-    //set up ajax to pull the image you have uploaded to present on the page
-    // // $.ajax({
-    // //     type: "GET",
-    // //     url: "https://cloudinary.com/?",
-    // //     data: {
-    // //         url: res.body.url
-    // //     },
-    // //     success: function(response) {
-    // //         $('').html
-    // //     },
-    // //     error: function() {
-    // //         alert("There was an error retrieving your image")
-    // //     }
-    // });
-    // //this posts the journal entries (plant name, description & image url to the journal db)
+})
+
+// -------------Edit and Delete Entries -------------------
+// app.put('/:id', function(req, res) {
+//   db.journal.findById(req.params.id).then(function(journal) {
+//     if (journal) {
+//       journal.updateAttributes(req.body).then(function() {
+//         res.status(200).send({msg: 'success'});
+//       });
+//     } else {
+//       res.status(404).send({msg: 'error'});
+//     }
+//   }).catch(function(err) {
+//     res.status(500).send({msg: 'error'});
+//   });
+// });
+
+// app.delete('/:id', function(req, res) {
+//   db.taco.findById(req.params.id).then(function(taco) {
+//     if (taco) {
+//       taco.destroy().then(function() {
+//         res.send({msg: 'success'});
+//       });
+//     } else {
+//       res.status(404).send({msg: 'error'});
+//     }
+//   }).catch(function(err) {
+//     res.status(500).send({msg: 'error'});
+//   });
+// });
+
+
+
+// retrieve the image from cloudinary to reappear on the userjournal page
+//set up ajax to pull the image you have uploaded to present on the page
+// // $.ajax({
+// //     type: "GET",
+// //     url: "https://cloudinary.com/?",
+// //     data: {
+// //         url: res.body.url
+// //     },
+// //     success: function(response) {
+// //         $('').html
+// //     },
+// //     error: function() {
+// //         alert("There was an error retrieving your image")
+// //     }
+// });
+// //this posts the journal entries (plant name, description & image url to the journal db)
 
 
 
