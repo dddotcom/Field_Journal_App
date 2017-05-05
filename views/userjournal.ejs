@@ -1,26 +1,26 @@
-<h1><%= currentUser.username %>'s Field Journal</h1>
-<h3>File Upload</h3>
+<h1><%= currentUser.username %>'s New Journal Entry</h1>
 
+</form>
+
+<div>
 	<form action="/userjournal" method="POST" enctype="multipart/form-data">
+		<legend>Journal Entry Title</legend>
+		<fieldset>
+			<label for="plantName">Plant Name</label>
+			<input type="text-area" class="form-control" name="plantName" id="plantName" placeholder="plant name">
+			<label for="plantName">Your Plant Story</label>
+			<input type="text-area" class="form-control" name="description" id="description" placeholder="plant story">
+		</fieldset>
+
+		<h3>File Upload</h3>
+		<div>
+		<% journals.forEach(function(journal) { %>
+		<img src="<%=journal.imageURL %>" alt="uploaded image">
+		<% }) %>
+		</div>
 		<label class="btn btn-lg btn-default btn-file">Browse
 		<input type="file" name="myFile" class="hidden">
 		</label>
 		<input type="submit" class="btn btn-lg btn-success">
-		</form>
-		<div>
-		<fieldset>
-		<form>
-		</legend>Journal Entry Title</legend>
-		<fieldset>
-			<label for="plantName">Plant Name</label>
-				<input type="text-area" class="form-control" name="plantName" id="plantName" placeholder="plant name">
-			<label for="plantName">Your Plant Story</label>
-				<input type="text-area" class="form-control" name="description" id="description" placeholder="plant story">
-			<button type="submit" class="btn btn-primary">Submit</button>
-		</fieldset>
-
-		</form>
-</div>
-
 	</form>
-
+</div>

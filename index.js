@@ -16,6 +16,7 @@ var upload = multer({ dest: './uploads' });
 var app = express();
 
 //Set and Use Statements
+app.use(express.static('static'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
@@ -49,11 +50,7 @@ app.get('/newgroup', function(req, res) {
     res.render('newgroup');
 })
 app.get('/newuser', function(req, res) {
-    res.render('newuser');
-})
-app.get('/userjournal', isLoggedIn, function(req, res) {
-        res.render('userjournal')
-        console.log(req.user.dataValues.username)
+        res.render('newuser');
     })
     // app.get('/groupjournals', isLoggedIn, function(req, res) {
     //     res.render('groupjournals')
@@ -108,12 +105,40 @@ app.post('/newgroup', function(req, res) {
         }
     })
 });
+// --------------------/userjournal functionality----------
+// Upload img to cloudinary, get cloudinary object back, use object to get url, store username, plantName, description and url to db.
+
 app.post('/userjournal', upload.single('myFile'), function(req, res) {
-        cloudinary.uploader.upload(req.file.path, function(result) {
-            res.send(result);
+    // make cloudinary call
+    cloudinary.uploader.upload(req.file.path, function(result) {
+        var cloudPubId = result.public_id;
+        var imgURL = result.url;
+        console.log('this is the cloud publicid: ', cloudPubId);
+        db.journal.create({
+                // 'username': db.user.username,
+                'plantName': req.body.plantName,
+                'description': req.body.description,
+                'imageURL': imgURL,
+                'publicid': cloudPubId
+            }).then(function(journal) {
+                console.log('db stuff', journal)
+                res.redirect('userjournal');
+            })
             //instead of sending result we want JSON object to send url to post to plant db along with username, title of plant and description
+    });
+
+
+})
+app.get('/userjournal', isLoggedIn, function(req, res) {
+        // find all jrnls in db
+        db.journal.findAll().then(function(journals) {
+            res.render('userjournal', { journals: journals })
+
+        }).catch(function(error) {
+            res.send({ message: 'error', error: error })
         })
     })
+    // retrieve the image from cloudinary to reappear on the userjournal page
     //set up ajax to pull the image you have uploaded to present on the page
     // // $.ajax({
     // //     type: "GET",
@@ -130,17 +155,9 @@ app.post('/userjournal', upload.single('myFile'), function(req, res) {
     // });
     // //this posts the journal entries (plant name, description & image url to the journal db)
 
-app.post('/userjournal', function(req, res) {
-    db.journal.create({
-        where: { username: username },
-        // 'username' :
-        'plantName': req.body.plantName,
-        'description': req.body.description
-            // 'imageURL': //the url for the image that the user uploaded to cloudinary
-    }).then(function(journal) {
-        res.redirect('/userjournal');
-    })
-});
+
+
+app.post('/userjournal', function(req, res) {});
 //Controllers
 //Insert MiddleWare here for IsLoggedIn
 app.use('/journal', isLoggedIn, require('./middleware/isLoggedIn')); //anything that hits this route refer to the controllers route
