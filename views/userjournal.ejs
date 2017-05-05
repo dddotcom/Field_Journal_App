@@ -1,7 +1,6 @@
+<a href="/logout" class="btn btn-danger">Logout <%= currentUser.username %></a>
+
 <h1><%= currentUser.username %>'s New Journal Entry</h1>
-
-</form>
-
 <div>
 	<form action="/userjournal" method="POST" enctype="multipart/form-data">
 		<legend>Journal Entry Title</legend>
@@ -22,6 +21,7 @@
 		<img src="<%=journal.imageURL %>" class="img-thumbnail" alt="uploaded image">
 		 <%=journal.plantName %>
 		<%=journal.description %>
+		<a href="/edit/<%= journal.id %>" class="btn btn-primary">Edit</a>
 		<% }) %>
 		<div>
 			<fieldset>

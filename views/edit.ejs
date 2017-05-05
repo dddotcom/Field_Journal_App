@@ -1,2 +1,16 @@
 <h1>This is the edit page</h1>
-<legend>Edit your journal</legend>
+
+<form action="/edit/:id/<%= journal.plantName %>" class="edit-form" role="form">
+	<legend>Edit Journal</legend>
+		<div class="form-group">
+			<label for="plantName">Edit Plant Name</label>
+			<input type="string" class="form-control" name="plantName" id="plantName" placeholder="plant name">
+		</div>
+
+<div class="form-group">
+	<label for="description">Edit Description</label>
+	<input type="string" name="description" class="description" id="description" placeholder="description">
+	<button type="submit" class="btn btn-primary">Submit</button>
+</div>
+
+</form>

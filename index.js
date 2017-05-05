@@ -65,6 +65,12 @@ app.post('/login', passport.authenticate('local', {
     failureRedirect: '/login'
 }));
 
+app.get('/logout', function(req, res) {
+    req.logout();
+    req.flash('sucess', 'You logged out, see ya next time!');
+    res.redirect('opening');
+});
+
 //Post Route for the New User Page
 app.post('/newuser', function(req, res) {
     console.log('user', req.body);
@@ -130,43 +136,48 @@ app.post('/userjournal', upload.single('myFile'), function(req, res) {
 
 })
 app.get('/userjournal', isLoggedIn, function(req, res) {
-    // find all jrnls in db
     db.journal.findAll().then(function(journals) {
         res.render('userjournal', { journals: journals })
-
     }).catch(function(error) {
         res.send({ message: 'error', error: error })
     })
 })
+app.get('/:id', function(req, res) {
+        db.journal.findById(req.params.id).then(function(journal) {
+            if (journal) {
+                res.render('/')
+            }
+        })
+        res.render('/edit');
+    })
+    // -------------Edit and Delete Entries -------------------
+app.put('/:id', function(req, res) {
+    db.journal.findById(req.params.id).then(function(journal) {
+        if (journal) {
+            journal.updateAttributes(req.body).then(function() {
+                res.status(200).send({ msg: 'success' });
+            });
+        } else {
+            res.status(404).send({ msg: 'error' });
+        }
+    }).catch(function(err) {
+        res.status(500).send({ msg: 'error' });
+    });
+});
 
-// -------------Edit and Delete Entries -------------------
-// app.put('/:id', function(req, res) {
-//   db.journal.findById(req.params.id).then(function(journal) {
-//     if (journal) {
-//       journal.updateAttributes(req.body).then(function() {
-//         res.status(200).send({msg: 'success'});
-//       });
-//     } else {
-//       res.status(404).send({msg: 'error'});
-//     }
-//   }).catch(function(err) {
-//     res.status(500).send({msg: 'error'});
-//   });
-// });
-
-// app.delete('/:id', function(req, res) {
-//   db.taco.findById(req.params.id).then(function(taco) {
-//     if (taco) {
-//       taco.destroy().then(function() {
-//         res.send({msg: 'success'});
-//       });
-//     } else {
-//       res.status(404).send({msg: 'error'});
-//     }
-//   }).catch(function(err) {
-//     res.status(500).send({msg: 'error'});
-//   });
-// });
+app.delete('/:id', function(req, res) {
+    db.journal.findById(req.params.id).then(function(taco) {
+        if (taco) {
+            journal.destroy().then(function() {
+                res.send({ msg: 'success' });
+            });
+        } else {
+            res.status(404).send({ msg: 'error' });
+        }
+    }).catch(function(err) {
+        res.status(500).send({ msg: 'error' });
+    });
+});
 
 
 
@@ -189,7 +200,7 @@ app.get('/userjournal', isLoggedIn, function(req, res) {
 
 
 
-app.post('/userjournal', function(req, res) {});
+// app.post('/userjournal', function(req, res) {});
 //Controllers
 //Insert MiddleWare here for IsLoggedIn
 app.use('/journal', isLoggedIn, require('./middleware/isLoggedIn')); //anything that hits this route refer to the controllers route
