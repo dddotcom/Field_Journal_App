@@ -145,10 +145,14 @@ app.get('/userjournal', isLoggedIn, function(req, res) {
 
 // -------------Edit and Delete Entries -------------------
 
-app.get('/:id', function(req, res) {
+app.get('/edit', function(req, res) {
+    res.render('edit');
+})
+
+app.get('/edit/:id', function(req, res) {
     db.journal.findById(req.params.id).then(function(journal) {
         if (journal) {
-            res.render('/:id', { journal: journal });
+            res.render('edit', { journal: journal });
         } else {
             res.status(404).render('error');
         }
@@ -156,15 +160,12 @@ app.get('/:id', function(req, res) {
         res.status(500).render('error');
     });
 });
-app.get('/edit', function(req, res) {
-    res.render('edit');
-})
 
 app.put('/:id', function(req, res) {
     db.journal.findById(req.params.id).then(function(journal) {
         if (journal) {
             journal.updateAttributes(req.body).then(function() {
-                res.status(200).send({ msg: 'success' });
+                res.render('/userjournal', { msg: 'success' });
             });
         } else {
             res.status(404).send({ msg: 'error' });
@@ -175,8 +176,8 @@ app.put('/:id', function(req, res) {
 });
 
 app.delete('/:id', function(req, res) {
-    db.journal.findById(req.params.id).then(function(taco) {
-        if (taco) {
+    db.journal.findById(req.params.id).then(function(journal) {
+        if (journal) {
             journal.destroy().then(function() {
                 res.send({ msg: 'success' });
             });
