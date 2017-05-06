@@ -22,15 +22,8 @@
 		 <%=journal.plantName %>
 		<%=journal.description %>
 		<a href="/edit/<%= journal.id %>" class="btn btn-primary">Edit</a>
+		<a href="/edit/<%= journal.id %>" class="btn btn-danger">Delete</a>
 		<% }) %>
-		<div>
-			<fieldset>
-			<label for="editentry">Edit Journal Entry</label>
-			<button>Edit</button>
-			<label>Delete Journal Entry</label>
-			<button>Delete</button>
-		</fieldset>
-		</div>
 		</div>
 
 	</form>

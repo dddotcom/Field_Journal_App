@@ -142,15 +142,24 @@ app.get('/userjournal', isLoggedIn, function(req, res) {
         res.send({ message: 'error', error: error })
     })
 })
+
+// -------------Edit and Delete Entries -------------------
+
 app.get('/:id', function(req, res) {
-        db.journal.findById(req.params.id).then(function(journal) {
-            if (journal) {
-                res.render('/')
-            }
-        })
-        res.render('/edit');
-    })
-    // -------------Edit and Delete Entries -------------------
+    db.journal.findById(req.params.id).then(function(journal) {
+        if (journal) {
+            res.render('/:id', { journal: journal });
+        } else {
+            res.status(404).render('error');
+        }
+    }).catch(function(err) {
+        res.status(500).render('error');
+    });
+});
+app.get('/edit', function(req, res) {
+    res.render('edit');
+})
+
 app.put('/:id', function(req, res) {
     db.journal.findById(req.params.id).then(function(journal) {
         if (journal) {
@@ -198,9 +207,6 @@ app.delete('/:id', function(req, res) {
 // });
 // //this posts the journal entries (plant name, description & image url to the journal db)
 
-
-
-// app.post('/userjournal', function(req, res) {});
 //Controllers
 //Insert MiddleWare here for IsLoggedIn
 app.use('/journal', isLoggedIn, require('./middleware/isLoggedIn')); //anything that hits this route refer to the controllers route
