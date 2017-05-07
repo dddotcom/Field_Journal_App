@@ -1,7 +1,7 @@
 $(function() {
-    $('.edit-form').submit(function(e) {
+    $('.edit-form').click(function(e) {
         e.preventDefault();
-        var url = $(this).attr('action');
+        var url = $(this).attr('href');
         var data = $(this).serialize();
 
         $.ajax({
