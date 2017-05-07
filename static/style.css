@@ -1,39 +1,49 @@
-/*~~~~~~~~~~~~opening page~~~~~~~~~~~*/
-
-.openingimg {
-    background-image: url(https://img2.goodfon.com/original/1280x720/7/29/multfilm-korolevstvo.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 100%;
-}
-
-.openingbody {
-    font-family: 'Ravi Prakash', cursive;
-    background-color: #32465e;
-    color: white;
-    margin: 0 auto;
-}
-
-.topnav {
-    padding: 1em;
-    margin: 0 auto;
-}
-
-img-thumbnail {
-    width: 200px;
-    height: 200px;
-}
-
-video.fillWidth {
-    max-width: 100px;
-    max-height: 100px;
-}
-
-.loginpage {
-    background-image: url(https://s-media-cache-ak0.pinimg.com/736x/3c/98/f2/3c98f26d2da40c7ae1fee613b5752196.jpg);
-    background-size: cover;
-    background-repeat: fixed no-repeat;
-    max-width: 100%;
-    max-height: 100%;
-}
+        /*~~~~~~~~~~~~opening page~~~~~~~~~~~*/
+        
+        .openingimg {
+            background-image: url(https://img2.goodfon.com/original/1280x720/7/29/multfilm-korolevstvo.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .openingbody {
+            font-family: 'Ravi Prakash', cursive;
+            background-color: #32465e;
+            color: white;
+            margin: 0 auto;
+        }
+        
+        .topnav {
+            padding: 1em;
+            margin: 0 auto;
+        }
+        
+        img-thumbnail {
+            width: 200px;
+            height: 200px;
+        }
+        
+        video.fillWidth {
+            max-width: 100px;
+            max-height: 100px;
+        }
+        
+        .loginpage {
+            background-image: url(https://s-media-cache-ak0.pinimg.com/736x/3c/98/f2/3c98f26d2da40c7ae1fee613b5752196.jpg);
+            background-size: cover;
+            background-repeat: fixed no-repeat;
+            max-width: 100%;
+            max-height: 100%;
+        }
+        /*~~~~~~User journal~~~~~~~~~~*/
+        
+        .userjournal {
+            background-image: url(http://img00.deviantart.net/e322/i/2013/288/d/8/bee_field_journal_by_sigmaelain-d6qnd72.jpg);
+        }
+        
+        .editpage {
+            background-image: url(http://img07.deviantart.net/1956/i/2013/291/9/6/field_journal__crows_by_sigmaelain-d6qzgm2.jpg);
+            /*opacity: 0.5;*/
+        }

@@ -165,7 +165,7 @@ app.put('/edit/:id', function(req, res) {
     db.journal.findById(req.params.id).then(function(journal) {
         if (journal) {
             journal.updateAttributes(req.body).then(function() {
-                res.render('/userjournal', { msg: 'success' });
+                res.redirect('userjournal');
             });
         } else {
             res.status(404).send({ msg: 'error' });
@@ -188,7 +188,6 @@ app.delete('/userjournal/:id', function(req, res) {
         res.status(500).send({ msg: 'error' });
     });
 });
-
 //Controllers
 //Insert MiddleWare here for IsLoggedIn
 app.use('/journal', isLoggedIn, require('./middleware/isLoggedIn')); //anything that hits this route refer to the controllers route

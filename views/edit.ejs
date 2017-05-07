@@ -1,3 +1,4 @@
+<body class="editpage">
 <h1>Edit Journal Entry for: </h1>
 <h2> <%= journal.plantName %></h2>
 <form action="/edit/" class="edit-form" role="form">
@@ -15,6 +16,7 @@
 	<input type="string" class="form-control" name="description" id="description" placeholder="description" value="<%=journal.description%>">
 	</div>
 	<a href="/edit/<%= journal.id %>" class="btn btn-primary">Edit</a>
-</form>
 
+</form>
 <a href="/userjournal">&larr; Back</a>
+</body>
