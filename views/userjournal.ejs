@@ -1,39 +1,52 @@
 <body class="userjournal">
-<a href="/logout" class="btn btn-danger">Logout <%= currentUser.username %></a>
+	<a href="/logout" class="btn btn-danger">Logout <%= currentUser.username %></a>
 
-<h1><%= currentUser.username %>'s New Journal Entry</h1>
-<div>
-	<form action="/userjournal" method="POST" enctype="multipart/form-data">
-		<legend>Journal Entry Title</legend>
+	<h1><%= currentUser.username %>'s New Journal Entry</h1>
 
-		<fieldset>
-			<label for="plantName">Plant Name</label>
-			<input type="string" class="form-control" name="plantName" id="plantName" placeholder="plant name">
-			<label for="plantName">Your Plant Story</label>
-			<input type="string" class="form-control" name="description" id="description" placeholder="plant story">
-		</fieldset>
-		<h3>File Upload</h3>
-		<label class="btn btn-md btn-default btn-file">Browse
-		<input type="file" name="myFile" class="hidden">
-		</label>
-		<div>Submit your new journal entry
-		<input type="submit" class="btn btn-lg btn-success">
-		</div>
-		<% journals.forEach(function(journal) { %>
-		<div class="well left-align">
-		<img src="<%=journal.imageURL %>" class="img-thumbnail" alt="uploaded image">
-	<div>
-		<%=journal.plantName %>
-		</div>
-		<div>
-		<%=journal.description %>
-		</div>
-		<a href="/edit/<%= journal.id %>" class="btn btn-primary">Edit</a>
-		<a href="/userjournal/<%= journal.id %>" class="btn btn-danger glyphicon glyphicon-trash delete-btn"<div class="btn">Delete</div></a>
-		</div>
-		<% }) %>
+	<div class="container-fluid">
+		<form action="/userjournal" method="POST" enctype="multipart/form-data">
+			<legend>Journal Entry Title</legend>
+				<fieldset>
+				<div class="row">
+				<div class="col-xs-16 col-sm-6 col-md-6 col-lg-6">
+					<label for="plantName">Plant Name</label>
+					<input type="string" class="form-control" name="plantName" id="plantName" placeholder="plant name">
+				</div>
+				</div>
+					<div class="row">
+					<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+					<label for="plantName">Your Plant Story</label>
+					<input type="string" class="form-control" name="description" id="description" placeholder="plant story">
+					</div>
+					</div>
+			</fieldset>
+			<legend>File Upload</legend>
+				<fieldset>
+					<label class="btn btn-md btn-default btn-file">Browse
+					<input type="file" name="myFile" class="hidden"></label>
+					<input type="submit" class="btn btn-md btn-success">
+				</fieldset>
+		</form>
+			<% journals.forEach(function(journal) { %>
+		<div class="row entries">
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<img src="<%=journal.imageURL %>" class="img-thumbnail" alt="uploaded image">
+				</div>
+				<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 ">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 entrytitle">
+							<%=journal.plantName %>
+						</div>
 
-
-	</form>
-</div>
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 entrydescription">
+							<%=journal.description %>
+						</div>
+					</div>
+				</div>
+						<a href="/edit/<%= journal.id %>" class="btn btn-primary">Edit</a>
+						<a href="/userjournal/<%= journal.id %>" class="btn btn-danger glyphicon glyphicon-trash delete-btn"<div class="btn">Delete</div></a>
+			<% }) %>
+			</div>
+		</div>
+	</div>
 </body>

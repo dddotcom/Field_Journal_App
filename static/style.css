@@ -1,49 +1,93 @@
-        /*~~~~~~~~~~~~opening page~~~~~~~~~~~*/
-        
-        .openingimg {
-            background-image: url(https://img2.goodfon.com/original/1280x720/7/29/multfilm-korolevstvo.jpg);
-            background-size: cover;
-            background-repeat: no-repeat;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .openingbody {
-            font-family: 'Ravi Prakash', cursive;
-            background-color: #32465e;
-            color: white;
-            margin: 0 auto;
-        }
-        
-        .topnav {
-            padding: 1em;
-            margin: 0 auto;
-        }
-        
-        img-thumbnail {
-            width: 200px;
-            height: 200px;
-        }
-        
-        video.fillWidth {
-            max-width: 100px;
-            max-height: 100px;
-        }
-        
-        .loginpage {
-            background-image: url(https://s-media-cache-ak0.pinimg.com/736x/3c/98/f2/3c98f26d2da40c7ae1fee613b5752196.jpg);
-            background-size: cover;
-            background-repeat: fixed no-repeat;
-            max-width: 100%;
-            max-height: 100%;
-        }
-        /*~~~~~~User journal~~~~~~~~~~*/
-        
-        .userjournal {
-            background-image: url(http://img00.deviantart.net/e322/i/2013/288/d/8/bee_field_journal_by_sigmaelain-d6qnd72.jpg);
-        }
-        
-        .editpage {
-            background-image: url(http://img07.deviantart.net/1956/i/2013/291/9/6/field_journal__crows_by_sigmaelain-d6qzgm2.jpg);
-            /*opacity: 0.5;*/
-        }
+       /*~~~~~~~~~~Global~~~~~~~~~~~~~~~~~~~~~~*/
+       
+       .form-control {
+           color: white;
+           background-color: black;
+       }
+       
+       .btn {
+           background-color: black;
+           color: white;
+       }
+       
+       h1 {
+           color: ;
+       }
+       /*~~~~~~~~~~~~opening page~~~~~~~~~~~*/
+       
+       .openingimg {
+           background-image: url(https://s-media-cache-ak0.pinimg.com/736x/30/cb/09/30cb098b18835a7868ba7ff33af3bc0a.jpg);
+           background-size: cover;
+           background-repeat: no-repeat;
+       }
+       
+       .openingbody {
+           font-family: 'Ravi Prakash', cursive;
+           background-color: #32465e;
+           color: white;
+           margin: 0 auto;
+       }
+       
+       .topnav {
+           padding: 1em;
+           margin: 0 auto;
+       }
+       
+       img-thumbnail {
+           width: 200px;
+           height: 200px;
+       }
+       
+       video.fillWidth {
+           max-width: 100px;
+           max-height: 100px;
+       }
+       
+       .loginpage {
+           background-image: url(https://s-media-cache-ak0.pinimg.com/736x/75/12/e3/7512e33cb089f18b444450bdf1284280.jpg);
+           background-size: cover;
+           background-repeat: fixed no-repeat;
+       }
+       /*~~~~~~User journal~~~~~~~~~~*/
+       
+       .userjournal {
+           /*background-image: url(https://s-media-cache-ak0.pinimg.com/736x/93/7e/1d/937e1ddad6466f9998720d64732adc38.jpg);*/
+           background-color: #b1b58b;
+       }
+       
+       .editpage {
+           background-image: url(https://s-media-cache-ak0.pinimg.com/originals/91/bf/0e/91bf0ea81ab85d84869976cb07ac46cc.jpg);
+           background-size: cover;
+           background-repeat: no-repeat;
+       }
+       
+       .entries {
+           margin: 2em;
+       }
+       
+       .entrytitle {
+           margin: 1em 0;
+           background-color: #DCDCC6;
+           font-size: 1em;
+           height: 40px;
+       }
+       
+       .entrydescription {
+           background-color: #DCDCC6;
+           font-size: 1em;
+           height: 200px;
+       }
+       /*~~~~~~~~~~~~Group Page~~~~~~~~~~~~~~~*/
+       
+       .newgrouppage {
+           background-image: url(https://s-media-cache-ak0.pinimg.com/736x/93/7e/1d/937e1ddad6466f9998720d64732adc38.jpg);
+           background-size: cover;
+           background-repeat: no-repeat;
+       }
+       /*~~~~~~~~~~~~New User Page~~~~~~~~~~~~~~~*/
+       
+       .newuserpage {
+           background-image: url(https://s-media-cache-ak0.pinimg.com/736x/5f/45/fd/5f45fdce96e5d46b5085136062a90e22.jpg);
+           background-size: cover;
+           background-repeat: no-repeat;
+       }
