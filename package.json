@@ -33,5 +33,13 @@
     "upload": "^0.1.3"
   },
   "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jadespachie/Field_Journal_App.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jadespachie/Field_Journal_App/issues"
+  },
+  "homepage": "https://github.com/jadespachie/Field_Journal_App#readme",
   "description": ""
 }

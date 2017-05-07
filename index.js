@@ -161,7 +161,7 @@ app.get('/edit/:id', function(req, res) {
     });
 });
 
-app.put('/:id', function(req, res) {
+app.put('/edit/:id', function(req, res) {
     db.journal.findById(req.params.id).then(function(journal) {
         if (journal) {
             journal.updateAttributes(req.body).then(function() {
@@ -175,7 +175,7 @@ app.put('/:id', function(req, res) {
     });
 });
 
-app.delete('/:id', function(req, res) {
+app.delete('/userjournal/:id', function(req, res) {
     db.journal.findById(req.params.id).then(function(journal) {
         if (journal) {
             journal.destroy().then(function() {
@@ -188,25 +188,6 @@ app.delete('/:id', function(req, res) {
         res.status(500).send({ msg: 'error' });
     });
 });
-
-
-
-// retrieve the image from cloudinary to reappear on the userjournal page
-//set up ajax to pull the image you have uploaded to present on the page
-// // $.ajax({
-// //     type: "GET",
-// //     url: "https://cloudinary.com/?",
-// //     data: {
-// //         url: res.body.url
-// //     },
-// //     success: function(response) {
-// //         $('').html
-// //     },
-// //     error: function() {
-// //         alert("There was an error retrieving your image")
-// //     }
-// });
-// //this posts the journal entries (plant name, description & image url to the journal db)
 
 //Controllers
 //Insert MiddleWare here for IsLoggedIn

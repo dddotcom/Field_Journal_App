@@ -1,16 +1,20 @@
-<h1>This is the edit page</h1>
-
-<form action="/edit/<%= journal.plantName %>" class="formedit" role="form">
-	<legend>Edit Journal</legend>
+<h1>Edit Journal Entry for: </h1>
+<h2> <%= journal.plantName %></h2>
+<form action="/edit/" class="edit-form" role="form">
 		<div class="form-group">
-			<label for="plantName">Edit Plant Name</label>
+		<div class="form-group">
+		<input type="integer" class="form-control hide" id="journalId" name="journalId" value="<%=journal.id %>">
+			<div>
+			<div class="form-group">
+			<label for="plantName">Edit Title</label>
 			<input type="string" class="form-control" name="plantName" id="plantName" placeholder="plant name" value="<%=journal.plantName%>">
 		</div>
 
 <div class="form-group">
 	<label for="description">Edit Description</label>
-	<input type="string" name="description" class="description" id="description" placeholder="description" value="<%journal.description%>">
-	<button type="submit" class="btn btn-primary">Submit</button>
-</div>
-
+	<input type="string" class="form-control" name="description" id="description" placeholder="description" value="<%=journal.description%>">
+	</div>
+	<a href="/edit/<%= journal.id %>" class="btn btn-primary">Edit</a>
 </form>
+
+<a href="/userjournal">&larr; Back</a>

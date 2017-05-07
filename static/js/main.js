@@ -1,6 +1,5 @@
-$(document).ready(function() {
-
-    $('.formedit').submit(function(e) {
+$(function() {
+    $('.edit-form').submit(function(e) {
         e.preventDefault();
         var url = $(this).attr('action');
         var data = $(this).serialize();
@@ -26,8 +25,7 @@ $(document).ready(function() {
         });
     });
 
-
-    $("#alerts").fadeTo(1500, 500).slideUp(500, function() {
-        $("alerts").slideUp(500);
-    });
+    // $("#alerts").fadeTo(1500, 500).slideUp(500, function() {
+    //     $("alerts").slideUp(500);
+    // });
 });
