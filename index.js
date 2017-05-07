@@ -164,8 +164,8 @@ app.get('/edit/:id', function(req, res) {
 app.put('/edit/:id', function(req, res) {
     db.journal.findById(req.params.id).then(function(journal) {
         if (journal) {
-            journal.updateAttributes(req.body).then(function() {
-                res.redirect('userjournal');
+            journal.updateAttributes(req.body).then(function(req, res) {
+                res.render('userjournal');
             });
         } else {
             res.status(404).send({ msg: 'error' });

@@ -80,9 +80,10 @@
        /*~~~~~~~~~~~~Group Page~~~~~~~~~~~~~~~*/
        
        .newgrouppage {
-           background-image: url(https://s-media-cache-ak0.pinimg.com/736x/93/7e/1d/937e1ddad6466f9998720d64732adc38.jpg);
+           background-image: url(https://farm4.staticflickr.com/3883/14607370835_92466eaba0_c.jpg);
            background-size: cover;
            background-repeat: no-repeat;
+           color: black;
        }
        /*~~~~~~~~~~~~New User Page~~~~~~~~~~~~~~~*/
        
@@ -90,4 +91,13 @@
            background-image: url(https://s-media-cache-ak0.pinimg.com/736x/5f/45/fd/5f45fdce96e5d46b5085136062a90e22.jpg);
            background-size: cover;
            background-repeat: no-repeat;
+       }
+       /*~~~~~~~~~~~~Edit Page~~~~~~~~~~~~~~~~~~~~~~~~*/
+       
+       .editdesc {
+           color: black;
+       }
+       
+       .edittit {
+           color: black;
        }

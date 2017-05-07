@@ -1,23 +1,27 @@
 <body class="newgrouppage">
-<h2>Create a New Group Name</h2>
+<legend>Create A New Group</legend>
+<h5>Create a group to view all journal entries within your group. You can create as many users as you would like within your group!</h5>
 <form action="/newgroup" method="POST" role="form">
 	<fieldset>
-		<legend>Group Name</legend>
 		<div class="form-group">
-			<label for="groupname">Group Name</label>
-			<input type="text" class="form-control" name="groupname" id="groupname" placeholder="Enter a group name" required>
+			<label for="groupname">Create a Group Name</label>
+			<input type="text" class="form-control" name="groupname" id="groupname" placeholder="group name" required>
+		<p>(examples include:   DuncanFamilyRocks,  TheJohnsons,  Eliza&Friends17)</p>
 		</div>
 		<div class="form-group">
-			<label for="city">What City Do You Live In?</label>
-			<input type="text" class="form-control" name="city" id="city" placeholder="Enter your City" required>
+			<label for="city">Tell Us What City You Live In</label>
+			<input type="text" class="form-control" name="city" id="city" placeholder="city" required>
+		<p>This is a way to connect with other adventurous groups and familes in your area!</p>
 		</div>
 		<div class="form-group">
-			<label for="state">State</label>
-			<input type="text" class="form-control" name="state" id="state" placeholder="Enter your State">
+			<label for="state">What State Do You Live In?</label>
+			<input type="text" class="form-control" name="state" id="state" placeholder="state">
+		<p>(examples include:  Washington,  Oregon,  Idaho)</p>
 		</div>
 	</fieldset>
 	<fieldset>
-		<legend>Admin User Info</legend>
+		<legend>Administrative User</legend>
+		<h5>Designate an administrator to add or delete members</h5>
 		<div class="form-group">
 			<label for="username">Username</label>
 			<input type="text" name="username" class="form-control" required>
@@ -25,7 +29,7 @@
 
 		<div class="form-group">
 			<label for="password">Password</label>
-			<input type="text" name="password" class="form-control" required>
+<input type="password" class="form-control" name="password" id="password" placeholder="password">
 		</div>
 
 	</fieldset>

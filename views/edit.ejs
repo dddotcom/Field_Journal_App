@@ -8,12 +8,12 @@
 			<div>
 			<div class="form-group">
 			<label for="plantName">Edit Title</label>
-			<input type="string" class="form-control" name="plantName" id="plantName" placeholder="plant name" value="<%=journal.plantName%>">
+			<input type="string" class="form-control entrytitle edittit" name="plantName" id="plantName" placeholder="plant name" value="<%=journal.plantName%>">
 		</div>
 
 <div class="form-group">
 	<label for="description">Edit Description</label>
-	<input type="string" class="form-control" name="description" id="description" placeholder="description" value="<%=journal.description%>">
+	<input type="string" class="form-control entrydescription editdesc" name="description" id="description" placeholder="description" value="<%=journal.description%>">
 	</div>
 	<a href="/edit/<%= journal.id %>" class="btn btn-primary">Edit</a>
 <a href="/userjournal">&larr; Back</a>

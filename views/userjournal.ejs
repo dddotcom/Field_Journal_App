@@ -8,45 +8,49 @@
 			<legend>Journal Entry Title</legend>
 				<fieldset>
 				<div class="row">
-				<div class="col-xs-16 col-sm-6 col-md-6 col-lg-6">
-					<label for="plantName">Plant Name</label>
-					<input type="string" class="form-control" name="plantName" id="plantName" placeholder="plant name">
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+					<label for="plantName">Title</label>
+					<input type="string" class="form-control entrytitle" name="plantName" id="plantName" placeholder="title">
 				</div>
 				</div>
 					<div class="row">
 					<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-					<label for="plantName">Your Plant Story</label>
-					<input type="string" class="form-control" name="description" id="description" placeholder="plant story">
+					<label for="plantName">My Story</label>
+					<input type="string" class="form-control entrydescription" name="description" id="description" placeholder="">
 					</div>
 					</div>
 			</fieldset>
-			<legend>File Upload</legend>
+			<label>File Upload</label>
 				<fieldset>
 					<label class="btn btn-md btn-default btn-file">Browse
 					<input type="file" name="myFile" class="hidden"></label>
 					<input type="submit" class="btn btn-md btn-success">
+					<p>upload a photo of your specimen</p>
 				</fieldset>
 		</form>
-			<% journals.forEach(function(journal) { %>
-		<div class="row entries">
-				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-					<img src="<%=journal.imageURL %>" class="img-thumbnail" alt="uploaded image">
-				</div>
-				<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 ">
-					<div class="row">
-						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 entrytitle">
-							<%=journal.plantName %>
+		<br>
+				<legend>My Collections</legend>
+					<% journals.forEach(function(journal) { %>
+				<div class="row entries">
+						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+							<img src="<%=journal.imageURL %>" class="img-thumbnail" alt="uploaded image">
 						</div>
+						<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 ">
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 entrytitle">
+									<%=journal.plantName %>
+								</div>
 
-						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 entrydescription">
-							<%=journal.description %>
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 entrydescription">
+									<%=journal.description %>
+								</div>
+							</div>
 						</div>
-					</div>
+								<a href="/edit/<%= journal.id %>" class="btn btn-primary">Edit</a>
+								<a href="/userjournal/<%= journal.id %>" class="btn btn-danger glyphicon glyphicon-trash delete-btn"<div class="btn">Delete</div></a>
+					<% }) %>
 				</div>
-						<a href="/edit/<%= journal.id %>" class="btn btn-primary">Edit</a>
-						<a href="/userjournal/<%= journal.id %>" class="btn btn-danger glyphicon glyphicon-trash delete-btn"<div class="btn">Delete</div></a>
-			<% }) %>
-			</div>
+			</br>
 		</div>
 	</div>
 </body>
