@@ -18,3 +18,11 @@ https://github.com/jaredhanson/passport
 
 //session is keeping track from page to page load by holding it in a cookie
 //flash needs it because it is using the session for the next page
+
+
+//STUFF I NEED TO FIX!!!
+1. Create seperate journals for each person that logs in. Keeps taking user to same 1 log in screen.
+2. Create Group capability
+3. Set up so when user creates new entries it posts correcty in journal db. Currently not linking userId or username.
+4. When user hits edit button redirect back to userjournal page.
+5. Fix back button as well!

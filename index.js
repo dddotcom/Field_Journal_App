@@ -65,13 +65,17 @@ app.post('/login', passport.authenticate('local', {
     failureRedirect: '/login'
 }));
 
+
+// ~~~~~~~~~~~~~Logout~~~~~~~~~~~~~~~~~~~~~~~//
+
 app.get('/logout', function(req, res) {
     req.logout();
     req.flash('sucess', 'You logged out, see ya next time!');
     res.redirect('opening');
 });
 
-//Post Route for the New User Page
+// ~~~~~~~~~~~~~~~New User Page~~~~~~~~~~~~~~
+
 app.post('/newuser', function(req, res) {
     console.log('user', req.body);
     db.user.create({
@@ -83,7 +87,8 @@ app.post('/newuser', function(req, res) {
     })
 });
 
-//Routes Post for the New Group Page
+
+// ~~~~~~~~~~~Create New Group Page~~~~~~~~~~~~
 
 app.post('/newgroup', function(req, res) {
     db.group.findOrCreate({

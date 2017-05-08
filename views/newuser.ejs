@@ -2,6 +2,11 @@
 <body class="newuserpage">
 <legend>Create A New User</legend>
 <h5>Create A User Account To Begin Crafting Your Field Journal</h5>
+	<div class="form-group">
+			<label for="groupname">Group Name</label>
+			<input type="text" class="form-control" name="groupname" id="groupname" placeholder="group name">
+		<p>If you are a member of a group please enter your groupname to view all group entries</p>
+		</div>
 <form action="/newuser" method="POST" role="form">
 		<div class="form-group">
 			<label for="username">Username</label>
@@ -9,12 +14,7 @@
 		</div>
 		<div class="form-group">
 			<label for="password">Password</label>
-			<input type="text" class="form-control" name="password" id="password" placeholder="password" required>
-		</div>
-	<div class="form-group">
-			<label for="groupname">Group Name</label>
-			<input type="text" class="form-control" name="groupname" id="groupname" placeholder="group name">
-		<p>If you are a member of a group please enter your groupname to view all group entries</p>
+			<input type="password" class="form-control" name="password" id="password" placeholder="password" required>
 		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
 </form>
