@@ -50,13 +50,11 @@ app.get('/newgroup', function(req, res) {
     res.render('newgroup');
 })
 app.get('/newuser', function(req, res) {
-        res.render('newuser');
-    })
-    // app.get('/groupjournals', isLoggedIn, function(req, res) {
-    //     res.render('groupjournals')
-    // })
+    res.render('newuser');
+})
 
-//POST Route for login page
+
+// ~~~~~~~~~~~Post Route using passport~~~~~~~~~~~
 
 app.post('/login', passport.authenticate('local', {
     successRedirect: '/userjournal',
@@ -66,7 +64,7 @@ app.post('/login', passport.authenticate('local', {
 }));
 
 
-// ~~~~~~~~~~~~~Logout~~~~~~~~~~~~~~~~~~~~~~~//
+// ~~~~~~~~~~~~~Logout using Flash~~~~~~~~~~~~~~~~~~~~~~~//
 
 app.get('/logout', function(req, res) {
     req.logout();
@@ -74,7 +72,7 @@ app.get('/logout', function(req, res) {
     res.redirect('opening');
 });
 
-// ~~~~~~~~~~~~~~~New User Page~~~~~~~~~~~~~~
+// ~~~~~~~New User Page w/ Posting to User Model~~~~~~~~~~~
 
 app.post('/newuser', function(req, res) {
     console.log('user', req.body);
@@ -88,7 +86,7 @@ app.post('/newuser', function(req, res) {
 });
 
 
-// ~~~~~~~~~~~Create New Group Page~~~~~~~~~~~~
+// ~~~~~~~~~~~Create New Group w/ posting to Group Model~~~~~~~~~~~
 
 app.post('/newgroup', function(req, res) {
     db.group.findOrCreate({
@@ -116,8 +114,9 @@ app.post('/newgroup', function(req, res) {
         }
     })
 });
-// --------------------/userjournal functionality----------
+// ~~~~Post to API- Cloudinary & place URL in DB to retrieve image from journal model~~~~~~~~~~~
 // Upload img to cloudinary, get cloudinary object back, use object to get url, store username, plantName, description and url to db.
+//instead of sending result we want JSON object to send url to post to plant db along with username, title of plant and description
 
 app.post('/userjournal', upload.single('myFile'), function(req, res) {
     // make cloudinary call
@@ -126,16 +125,15 @@ app.post('/userjournal', upload.single('myFile'), function(req, res) {
         var imgURL = result.url;
         console.log('this is the cloud publicid: ', cloudPubId);
         db.journal.create({
-                // 'username': db.user.username,
-                'plantName': req.body.plantName,
-                'description': req.body.description,
-                'imageURL': imgURL,
-                'publicid': cloudPubId
-            }).then(function(journal) {
-                console.log('db stuff', journal)
-                res.redirect('userjournal');
-            })
-            //instead of sending result we want JSON object to send url to post to plant db along with username, title of plant and description
+            // 'username': db.user.username,
+            'plantName': req.body.plantName,
+            'description': req.body.description,
+            'imageURL': imgURL,
+            'publicid': cloudPubId
+        }).then(function(journal) {
+            console.log('db stuff', journal)
+            res.redirect('userjournal');
+        })
     });
 
 
@@ -148,7 +146,9 @@ app.get('/userjournal', isLoggedIn, function(req, res) {
     })
 })
 
-// -------------Edit and Delete Entries -------------------
+// ~~~~~~~~~~~Edit and Delete Journal Entries~~~~~~~~~~~
+
+//Edit
 
 app.get('/edit', function(req, res) {
     res.render('edit');
@@ -180,6 +180,8 @@ app.put('/edit/:id', function(req, res) {
     });
 });
 
+//Delete
+
 app.delete('/userjournal/:id', function(req, res) {
     db.journal.findById(req.params.id).then(function(journal) {
         if (journal) {
@@ -193,9 +195,11 @@ app.delete('/userjournal/:id', function(req, res) {
         res.status(500).send({ msg: 'error' });
     });
 });
+
 //Controllers
-//Insert MiddleWare here for IsLoggedIn
-app.use('/journal', isLoggedIn, require('./middleware/isLoggedIn')); //anything that hits this route refer to the controllers route
+//Middleware for isLoggedIn
+app.use('/journal', isLoggedIn, require('./middleware/isLoggedIn')); //anything that hits this route
 app.use('/groupjournals', isLoggedIn, require('./middleware/isLoggedIn'));
-//Listen - tells which port to listen on
+
+//Listen
 app.listen(process.env.PORT || 3000);

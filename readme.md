@@ -1,3 +1,7 @@
+=====Deployed URL=====
+
+https://lildarwinsfieldjournal.herokuapp.com/
+
 =====User Stories====
 //Role, Goal, Motivation
 1. As an advid hiker that enjoys taking photos with my iphone of the cool things I see on my hike I would like an app that allows me to create a log of the cool things I see - like a field journal. Something that allows me to organize my specimens wheter it be plants, animals, bugs or just cool findings.
@@ -12,6 +16,15 @@
 4. Implement the Cloudinary API so that the user can host images in the cloud. Find a way to also bring those pictures into the journal so that the user can see the images, title and description all on the same page -- the userjournal page.
 5. Create an edit page so that the user can edit their entries. (IE the user found the actual name of the entry on the web and wants to rename their journal entry.)
 6. Give the user a way to delete journal entries.
+
+=====Technologies Used=====
+1. Ajax for Edit and Delete
+2. Passport as authentication middleware.
+3. isLoggedIn middleware in order to access user pages.
+4. Node Modules used: Express, EJS Layouts, Sessions, body parser, flash
+5. Bcrypt for password hashing
+6. API used: Cloudinary
+7. Postico - 3 Models (user, group, journal)
 
 
 =====STRETCH GOALS=====
